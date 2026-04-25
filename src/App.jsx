@@ -631,7 +631,7 @@ export default function App() {
               <h3 className="mb-8 text-2xl font-bold text-[#2b211c] dark:text-[#f2ebe4] text-center">Supervisors</h3>
               <div className="grid gap-6 sm:grid-cols-2 max-w-3xl mx-auto">
                 <TeamCard 
-                  name="Dr. Janaka Wijekoon"
+                  name="Dr. Kapila Disanayake"
                   role="Supervisor"
                   department="Information Systems Engineering"
                   links={[
