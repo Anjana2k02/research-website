@@ -1,121 +1,86 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import reportHtml from './content/dynamic-route-report.html?raw'
 import './App.css'
 
+const sections = [
+  { href: '#_Toc228006045', label: 'Abstract' },
+  { href: '#_Toc228006049', label: 'Introduction' },
+  { href: '#_Toc228006050', label: 'Methodology' },
+  { href: '#_Toc228006051', label: 'Results' },
+  { href: '#_Toc228006052', label: 'Conclusion' },
+  { href: '#_Toc228006053', label: 'References' },
+]
+
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+    <main className="site-shell">
+      <header className="paper-hero" id="top">
+        <div className="paper-hero__copy">
+          <p className="eyebrow">Research Paper</p>
+          <h1>
+            Dynamic Route Optimization using Sensor-Based User Interest
+            Detection with Indoor Mapping
+          </h1>
+          <p className="hero-summary">
+            The Dynamic Route Report covers BLE indoor positioning, activity
+            recognition, interest detection, and adaptive route generation for
+            intelligent indoor navigation.
           </p>
+          <div className="hero-actions" aria-label="Paper actions">
+            <a className="button button--primary" href="#paper">
+              Read Paper
+            </a>
+            <a
+              className="button button--secondary"
+              href="/doc/Dynamic_Route_Report.docx"
+              download
+            >
+              Download DOCX
+            </a>
+          </div>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
+
+        <dl className="paper-facts" aria-label="Paper details">
+          <div>
+            <dt>Group</dt>
+            <dd>25-26J-287</dd>
+          </div>
+          <div>
+            <dt>Author</dt>
+            <dd>Indunil W W A D A</dd>
+          </div>
+          <div>
+            <dt>Student ID</dt>
+            <dd>IT22002624</dd>
+          </div>
+          <div>
+            <dt>Focus</dt>
+            <dd>Indoor navigation</dd>
+          </div>
+        </dl>
+      </header>
+
+      <section className="reader-layout" aria-label="Dynamic Route Report">
+        <aside className="toc-panel" aria-label="Report sections">
+          <p className="toc-title">Sections</p>
+          <nav>
+            {sections.map((section) => (
+              <a key={section.href} href={section.href}>
+                {section.label}
+              </a>
+            ))}
+          </nav>
+          <a className="back-to-top" href="#top">
+            Back To Top
+          </a>
+        </aside>
+
+        <article
+          id="paper"
+          className="paper-document"
+          dangerouslySetInnerHTML={{ __html: reportHtml }}
+        />
       </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+    </main>
   )
 }
 

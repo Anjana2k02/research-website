@@ -1,0 +1,911 @@
+﻿<p>Dynamic Route Optimization using Sensor-Based User Interest Detection with Indoor Mapping</p>
+<p>
+<br />
+<strong>RP Group Id: 25-26J-287</strong>
+</p>
+<p>IT22002624 - Indunil W W A D A</p>
+<h1>
+<a id="_Toc228006044">
+</a>Declaration</h1>
+<p>We declare that this is our own work, and this proposal does not incorporate without acknowledgement any material previously submitted for a degree or diploma in any other university or Institute of higher learning and to the best of our knowledge and belief it does not contain any material previously published or written by another person except where the acknowledgement is made in the text.</p>
+<p> </p>
+<table>
+<tr>
+<td>
+<p>
+<strong>Name</strong>
+</p>
+</td>
+<td>
+<p>
+<strong>Student ID</strong>
+</p>
+</td>
+<td>
+<p>
+<strong>Signature</strong>
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Indunil W W A D A</p>
+</td>
+<td>
+<p>IT22002624</p>
+</td>
+<td>
+</td>
+</tr>
+</table>
+<p> </p>
+<p> </p>
+<p>The supervisor/s should certify the proposal report with the following declaration.</p>
+<p> </p>
+<p>The above candidates are carrying out research for the undergraduate Dissertation under my supervision.</p>
+<p> </p>
+<p> </p>
+<p>…………………………………                                                  ……………………….</p>
+<p>Signature of the supervisor                                           Date</p>
+<p>(Mr. Kapila Disanayake)</p>
+<h1>
+<a id="_Toc228006045">
+</a>Abstract</h1>
+<p>This project presents a dynamic route optimization system integrated with indoor mapping and Bluetooth Low Energy (BLE)-based user tracking for intelligent indoor navigation. Traditional navigation systems rely on static routes generated from initial user preferences, which fail to adapt to real-time user behavior. To address this limitation, the proposed system introduces an adaptive navigation framework that continuously updates routes based on user activity, location, and inferred interest.</p>
+<p>The system combines multiple technologies, including indoor map development, spatial data processing, sensor-based activity recognition, and BLE-based positioning. The indoor map is initially designed using Adobe-based tools to create a visually accurate floor layout. This map is then processed using QGIS to generate structured spatial layers such as navigation paths, artifact locations, and BLE beacon positions. These layers are exported in GeoJSON format and integrated into a Flutter-based mobile application, where they are rendered using a layered visualization approach.</p>
+<p>User location is estimated through BLE beacon signals by analyzing Received Signal Strength Indicator (RSSI) values. To improve accuracy, signal smoothing and weighted positioning techniques are applied. In addition, smartphone sensors such as accelerometers and gyroscopes are used to detect user activity, enabling the system to distinguish between movement and engagement behaviors.</p>
+<p>The system employs a dynamic routing mechanism that updates navigation paths in real time by combining spatial distance with user preference data derived from observed behavior. By integrating indoor mapping, behavior analysis, and adaptive routing, the proposed solution enhances personalization, improves navigation efficiency, and provides a more interactive user experience in indoor environments such as museums and exhibitions.</p>
+<h1>
+<a id="_Toc228006046">
+</a>Acknowledgement</h1>
+<p>I would like to express my sincere gratitude to all those who have supported and guided me in the successful completion of this project titled <em>“Dynamic Route Optimization with Indoor Map and BLE-based User Tracking System.”</em>
+</p>
+<p>First and foremost, I would like to extend my heartfelt thanks to my project supervisors, Mr. Kapila Disanayake and Mr. Harshanath (SMB), for their invaluable guidance, continuous support, and constructive feedback throughout the development of this project. Their expertise, encouragement, and direction have been instrumental in shaping this work.</p>
+<p>I would also like to express my gratitude to the <strong>Sri Lanka Institute of Information Technology (SLIIT)</strong> for providing the necessary facilities, academic environment, and resources required to successfully carry out this project.</p>
+<p>I am thankful to all the lecturers and staff members of the institution for their support and cooperation during the course of this study. I would also like to acknowledge my friends and colleagues for their assistance, motivation, and helpful discussions that contributed to the completion of this project.</p>
+<p>Finally, I would like to express my deepest appreciation to my family for their unwavering support, encouragement, and understanding throughout this journey.</p>
+<h1>
+<a id="_Toc228006047">
+</a>Table of Contents</h1>
+<p>Contents</p>
+<p>
+<a href="#_Toc228006042">i. Hard Cover	1</a>
+</p>
+<p>
+<a href="#_Toc228006043">ii. Title Page	2</a>
+</p>
+<p>
+<a href="#_Toc228006044">iii. Declaration	3</a>
+</p>
+<p>
+<a href="#_Toc228006045">iv. Abstract	4</a>
+</p>
+<p>
+<a href="#_Toc228006046">v. Acknowledgement	5</a>
+</p>
+<p>
+<a href="#_Toc228006047">vi. Table of Contents	6</a>
+</p>
+<p>
+<a href="#_Toc228006048">ix. List of Abbreviations	7</a>
+</p>
+<p>
+<a href="#_Toc228006049">x. Introduction	8</a>
+</p>
+<p>
+<a href="#_Toc228006050">xi. Methodology	13</a>
+</p>
+<p>
+<a href="#_Toc228006051">xii. Results and Discussion	15</a>
+</p>
+<p>
+<a href="#_Toc228006052">xiii. Conclusion	19</a>
+</p>
+<p>
+<a href="#_Toc228006053">xiv. References	21</a>
+</p>
+<h1>
+<a id="_Toc228006048">
+</a>List of Abbreviations</h1>
+<p>BLE – Bluetooth Low Energy</p>
+<p>HAR – Human Activity Recognition</p>
+<p>RSSI – Received Signal Strength Indicator</p>
+<p>GPS – Global Positioning System</p>
+<p>GIS – Geographic Information System</p>
+<p>API – Application Programming Interface</p>
+<p>UI – User Interface</p>
+<p>UX – User Experience</p>
+<p>JSON – JavaScript Object Notation</p>
+<p>GeoJSON – Geographic JavaScript Object Notation</p>
+<p>QGIS – Quantum Geographic Information System</p>
+<p>UWB – Ultra-Wideband</p>
+<p>PDR – Pedestrian Dead Reckoning</p>
+<p>IoT – Internet of Things</p>
+<p>AI – Artificial Intelligence</p>
+<p>ML – Machine Learning</p>
+<p>SDK – Software Development Kit</p>
+<p>OS – Operating System</p>
+<h1>
+<a id="_Toc228006049">
+</a>Introduction</h1>
+<h2>1.1 Background Literature</h2>
+<p>Indoor navigation has emerged as a critical research and application domain due to the increasing complexity of modern infrastructures such as museums, airports, shopping malls, hospitals, and large exhibition centers. Unlike outdoor environments where Global Positioning System (GPS) technology provides reliable and accurate positioning, indoor environments present significant challenges due to signal attenuation, multipath interference, and structural obstructions. As a result, alternative technologies and methods must be employed to support indoor positioning and navigation.</p>
+<p>Over the past decade, various indoor navigation systems have been developed using technologies such as Wi-Fi fingerprinting, Radio Frequency Identification (RFID), Ultra-Wideband (UWB), computer vision, and Bluetooth Low Energy (BLE). Among these, BLE has gained widespread attention due to its low cost, energy efficiency, ease of deployment, and compatibility with smartphones. BLE beacon-based systems allow mobile devices to estimate proximity to specific locations by analyzing signal strength (RSSI), making them suitable for indoor navigation applications.</p>
+<p>In parallel, the advancement of mobile computing and embedded sensors has enabled the integration of user behavior analysis into navigation systems. Smartphones are equipped with sensors such as accelerometers and gyroscopes, which can be used to detect user activities such as walking, standing, and sitting. These capabilities allow systems to go beyond simple location tracking and understand user interaction with the environment.</p>
+<p>In museum environments, digital guides have evolved from static information systems to interactive applications capable of providing personalized recommendations and navigation assistance. Early systems relied heavily on predefined routes or manual user input, where visitors selected areas of interest before starting their visit. While these systems improved accessibility, they lacked adaptability and failed to respond to changes in user interest during the visit.</p>
+<p>Recent research has highlighted the importance of context-aware and adaptive systems that can dynamically adjust recommendations based on real-time user behavior. For instance, dwell time near exhibits has been used as an indicator of user interest. However, dwell time alone can be misleading, as users may pause due to fatigue, crowding, or confusion rather than genuine interest. Therefore, combining multiple signals such as location, activity, and time is essential for accurate interest detection.</p>
+<p>Furthermore, indoor mapping technologies have improved significantly with the use of Geographic Information Systems (GIS) tools such as QGIS. These tools enable the creation of structured spatial data, including routes, artifact locations, and beacon positions, which can be integrated into mobile applications. When combined with modern frameworks like Flutter, these systems can deliver highly interactive and visually rich user experiences.</p>
+<p>Despite these advancements, most existing indoor navigation systems still rely on static route planning. They do not effectively incorporate real-time user behavior into route optimization. This limitation reduces the overall effectiveness of navigation systems, particularly in dynamic environments such as museums where user interests evolve continuously.</p>
+<p>The present study addresses these limitations by proposing a system that integrates indoor mapping, BLE-based positioning, and sensor-based activity recognition to enable dynamic route optimization. By combining explicit user preferences with implicit behavioral data, the system aims to provide a more personalized and adaptive navigation experience.</p>
+<h2>1.2 Research Gap</h2>
+<p>Although significant progress has been made in indoor navigation and personalization technologies, several critical gaps remain in existing systems.</p>
+<p>Firstly, most indoor navigation systems rely on static user profiles collected at the beginning of the visit. These profiles are used to generate predefined routes, assuming that user preferences remain constant. However, in real-world scenarios, user interests are dynamic and can change as they interact with different exhibits or environments.</p>
+<p>Secondly, existing systems often treat location tracking and user behavior analysis as separate components. While BLE-based systems can estimate user position, they do not incorporate behavioral signals such as activity state or engagement level. Similarly, activity recognition systems do not utilize spatial context effectively. This lack of integration leads to incomplete understanding of user behavior.</p>
+<p>Thirdly, many systems rely heavily on explicit user input, such as ratings or manual selections, to update preferences. This approach can be intrusive and may not accurately reflect actual user interest. Users are often unwilling to provide continuous feedback, making implicit sensing methods more desirable.</p>
+<p>Another important gap lies in interest detection mechanisms. Many systems use simple metrics such as dwell time to infer interest. However, dwell time alone is insufficient, as it cannot distinguish between intentional engagement and incidental stopping. Without incorporating additional factors such as posture and proximity, these systems may produce inaccurate results.</p>
+<p>Furthermore, indoor navigation systems frequently lack dynamic route adaptation capabilities. Even when user preferences are updated, the route is not recalculated in real time. This results in missed opportunities to guide users toward newly discovered areas of interest.</p>
+<p>Finally, there is a lack of integrated frameworks that combine indoor mapping, BLE positioning, activity recognition, and route optimization into a single cohesive system. Most existing solutions address these components individually rather than as part of a unified architecture.</p>
+<p>These gaps highlight the need for a system that can:</p>
+<ul>
+<li>Continuously monitor user behavior </li>
+<li>Accurately infer user interest using multiple signals </li>
+<li>Dynamically update navigation routes </li>
+<li>Provide seamless integration between mapping, sensing, and routing </li>
+</ul>
+<h2>1.3 Research Problem</h2>
+<p>The primary research problem addressed in this study is:</p>
+<p>
+<strong>“How to design and implement a dynamic indoor navigation system that adapts routes in real time based on user behavior, location, and inferred interest?”</strong>
+</p>
+<p>In traditional systems, navigation routes are generated based on initial user preferences and remain unchanged throughout the visit. This approach does not account for:</p>
+<ul>
+<li>Changing user interests </li>
+<li>Environmental factors (crowds, fatigue) </li>
+<li>User interaction with exhibits </li>
+</ul>
+<p>As a result, users may miss relevant content or follow inefficient routes, leading to a suboptimal experience.</p>
+<p>Additionally, accurately detecting user interest in indoor environments is a complex challenge. Simple indicators such as location or dwell time are insufficient to capture true engagement. A more robust approach is required that combines multiple factors such as:</p>
+<ul>
+<li>Activity state (walking, standing, sitting) </li>
+<li>Proximity to artifacts </li>
+<li>Duration of interaction </li>
+</ul>
+<p>Another key challenge is achieving reliable indoor positioning. BLE-based systems provide approximate location estimates, but signal variability and environmental factors can affect accuracy. Therefore, efficient algorithms and filtering techniques are required to ensure stable positioning.</p>
+<p>Moreover, dynamic route optimization must balance two competing objectives:</p>
+<ol>
+<li>Minimizing travel distance </li>
+<li>Maximizing user satisfaction based on preferences </li>
+</ol>
+<p>Designing a system that effectively balances these objectives while maintaining a smooth and coherent navigation experience is a significant challenge.</p>
+<h2>1.4 Research Objectives</h2>
+<p>The main objective of this project is to develop a dynamic indoor navigation system that integrates indoor mapping, positioning technologies, user behavior analysis, and real-time route optimization. The system is designed to move beyond traditional static navigation approaches by incorporating adaptive mechanisms that respond to user interactions within the environment.</p>
+<p>To achieve this goal, the study first focuses on developing a digital indoor map system using image-based coordinate models. This involves designing a visual indoor layout and preparing spatial data using tools such as QGIS. The spatial data is structured into multiple layers, including route paths, artifact locations, and BLE beacon positions, ensuring accurate representation and seamless integration with the mobile application.</p>
+<p>Another key objective is the implementation of BLE-based indoor positioning. This includes deploying BLE beacons at strategic locations within the indoor environment and estimating the user’s position using Received Signal Strength Indicator (RSSI) values. To improve positioning accuracy, appropriate filtering and smoothing techniques are applied to reduce signal fluctuations and environmental noise.</p>
+<p>The system also aims to detect user activity through smartphone sensors such as accelerometers and gyroscopes. By analyzing sensor data, the system classifies user behavior into activities such as walking, standing, and sitting. This activity information plays a crucial role in identifying meaningful user engagement with artifacts and supports the overall interest detection mechanism.</p>
+<p>A central objective of the project is to enable dynamic route optimization. This is achieved by developing algorithms that continuously update navigation routes in real time based on user preferences and detected behavior. The routing mechanism combines distance-based calculations with preference-based weighting to ensure that navigation remains efficient while adapting to evolving user interests.</p>
+<p>Finally, the system is designed to enhance the overall user experience by providing personalized navigation recommendations. By adapting routes based on real-time behavioral data, the system reduces the need for manual user input and offers a more intuitive and engaging interaction within indoor environments.</p>
+<h2>1.5 Scope of the Study</h2>
+<p>This study focuses on the design and implementation of a dynamic indoor navigation system specifically tailored for environments such as museums and exhibitions, where artifact-based navigation and user engagement are essential. The system is developed to operate within controlled indoor spaces, leveraging digital mapping and sensing technologies to deliver an adaptive navigation experience.</p>
+<p>The scope of the study includes the creation of indoor maps using image-based coordinate systems, which allows accurate alignment between spatial data and visual representations. It also includes the implementation of BLE-based positioning to track user location within the environment. In addition, the system incorporates activity recognition using smartphone sensors to understand user behavior and integrates an interest detection mechanism that evaluates user engagement based on multiple conditions such as proximity, dwell time, and activity state.</p>
+<p>Furthermore, the study covers the development of a dynamic route optimization framework using graph-based methods, enabling real-time updates to navigation paths. The implementation of a mobile application using Flutter is also within scope, ensuring that the system is accessible and functional on modern smartphones.</p>
+<p>The system is designed primarily for single-user navigation scenarios and assumes the availability of BLE beacon infrastructure within the indoor environment. However, certain aspects are intentionally excluded from the scope of this study. These include outdoor navigation, high-precision localization requiring centimeter-level accuracy, multi-user interaction or crowd management features, and advanced artificial intelligence-based predictive modeling, which are considered potential areas for future research and development.</p>
+<h1>
+<a id="_Toc228006050">
+</a>Methodology</h1>
+<p>The following methodology presents a revised and more detailed description of the system's operational logic. It extends the original research paper by adding explicit design rationale, decision criteria, and implementation guidance for each processing stage. The system is composed of seven tightly integrated components operating across two phases.</p>
+<p>The overall system state at time t is formally defined as S_t = { P_t, A_t, L_t, I_t, R_t }, where P_t denotes the current user profile, A_t is the detected activity state, L_t is the estimated indoor location, I_t is the inferred interest state, and R_t is the active navigation route. Together, these five elements capture the full operational context of the system at any given moment during the visit.</p>
+<p>Route adaptation is expressed as:</p>
+<p>
+<em>R_(t+1)  =  f( P_t, I_t, L_t )</em>
+</p>
+<p>where f(·) is the route update function that synthesizes the current profile, inferred interests, and visitor location to regenerate an optimized navigation path.</p>
+<h2>A. Survey-Based User Profiling</h2>
+<p>This component collects structured preference data from the visitor at the start of the museum session. It provides the cold-start input required to generate a meaningful initial navigation route before any behavioral data has been gathered.</p>
+<p>The survey is administered through the mobile application immediately upon launch, with a target completion time of under 2 minutes. It collects two classes of data:</p>
+<ul>
+<li>Visitor Type (u): Categorical – Student, Teacher, Professor, Civilian, Foreign Visitor.</li>
+<li>Artifact Category Preferences (C₀): Multi-select from available museum categories (e.g., Coins, Clothing, Weapons, Statues, Sculptures, Ceramics, Manuscripts, Jewelry, Tools).</li>
+</ul>
+<p>Formal definition of the initial profile:</p>
+<p>
+<em>P₀  =  { u, C₀ }</em>
+</p>
+<p>The survey profile is explicitly treated as provisional. Visitors frequently have incomplete self-knowledge about their interests before encountering physical artifacts. The survey therefore provides a starting point expected to be refined and potentially overridden by observed behavior during the visit.</p>
+<table>
+<tr>
+<td>
+<p>Parameter</p>
+</td>
+<td>
+<p>Specification / Value</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Input</p>
+</td>
+<td>
+<p>Visitor responses via mobile UI</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Output</p>
+</td>
+<td>
+<p>Profile object P₀ = {u, C₀}</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Collection timing</p>
+</td>
+<td>
+<p>Pre-visit, before museum entry</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Completion target</p>
+</td>
+<td>
+<p>&lt; 2 minutes</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Visitor types supported</p>
+</td>
+<td>
+<p>5 (Student, Teacher, Professor, Civilian, Foreign)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Category options</p>
+</td>
+<td>
+<p>7–10 artifact categories depending on museum</p>
+</td>
+</tr>
+</table>
+<h2>B. Activity Recognition for User Behavior Detection</h2>
+<p>The Activity Recognition Module (ARM) continuously classifies the visitor's physical activity into one of three states: walking, standing, or sitting. This classification is the primary behavioral signal used to distinguish transit between exhibits from engagement with an exhibit, and both from non-engagement rest states.</p>
+<p>
+<strong>Sensor Input</strong>
+</p>
+<p>The module reads six-dimensional inertial data from the smartphone's built-in sensors at each time step t:</p>
+<p>
+<em>x_t  =  [ a_x(t), a_y(t), a_z(t), g_x(t), g_y(t), g_z(t) ]</em>
+</p>
+<ul>
+<li>Accelerometer axes a_x, a_y, a_z: measured in m/s² – capture translational motion and gravitational component.</li>
+<li>Gyroscope axes g_x, g_y, g_z: measured in rad/s – capture rotational motion and body orientation changes.</li>
+</ul>
+<p>
+<strong>Window Segmentation &amp; Feature Extraction</strong>
+</p>
+<p>The continuous sensor stream is partitioned into fixed-length windows:</p>
+<p>
+<em>W_k  =  { x_t1, x_t2, …, x_tn }</em>
+</p>
+<p>For each window W_k the following features are extracted per axis, yielding an 18-dimensional feature vector: mean, variance, signal magnitude area (SMA), root mean square (RMS), and peak-to-peak amplitude.</p>
+<p>
+<strong>Classification</strong>
+</p>
+<p>The feature vector is passed to a trained supervised classifier that outputs:</p>
+<p>
+<em>A_hat_k  ∈  { walking, standing, sitting }</em>
+</p>
+<p>Recommended classifiers: Random Forest (robust, fast inference), SVM with RBF kernel (strong generalization), or lightweight 1D-CNN (higher accuracy, more compute required).</p>
+<p>The activity recognition module achieved an overall classification accuracy of approximately 93.4%, with the standing class reaching the highest reliability — a result that is particularly significant since interest detection depends critically on accurate identification of stationary behaviour. Walking and standing were clearly distinguishable due to their contrasting motion energy profiles, while sitting was identified by consistently low variance across both accelerometer and gyroscope channels. A recommended window size of 128 samples at 50 Hz yields a 2.56-second window with 50% overlap, providing a practical balance between temporal resolution and computational cost.</p>
+<h2>C. Artifact-Level Interest Inference</h2>
+<p>This component determines whether the visitor is genuinely interested in a specific artifact by fusing three independent signals: activity state, proximity to the artifact, and accumulated dwell time. This three-way gate is the core novelty of the system's interest detection approach.</p>
+<p>
+<strong>Proximity Condition</strong>
+</p>
+<p>An artifact is considered a candidate only when the estimated distance d_j(t) satisfies:</p>
+<p>
+<em>d_j(t)  ≤  d_th     (threshold range: 0.0 – 0.9 metres)</em>
+</p>
+<p>
+<strong>Dwell Time Condition</strong>
+</p>
+<p>The visitor must remain near the artifact while standing for a minimum accumulated time:</p>
+<p>
+<em>T_j  ≥  T_min     (calibrated to 12 seconds)</em>
+</p>
+<p>
+<strong>Combined Interest Gate</strong>
+</p>
+<p>
+<em>I_j  =  1  if  A_hat_k = standing  AND  d_j(t) ≤ d_th  AND  T_j ≥ T_min</em>
+</p>
+<p>
+<em>I_j  =  0  otherwise</em>
+</p>
+<p>Sitting is explicitly excluded: museum visitors who sit are associated with rest or waiting behaviour. Including sitting would produce large numbers of false-positive detections near benches and rest areas.</p>
+<table>
+<tr>
+<td>
+<p>Artifact</p>
+</td>
+<td>
+<p>Activity</p>
+</td>
+<td>
+<p>Distance</p>
+</td>
+<td>
+<p>Dwell</p>
+</td>
+<td>
+<p>Interest</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Coins</p>
+</td>
+<td>
+<p>Standing</p>
+</td>
+<td>
+<p>0.70 m</p>
+</td>
+<td>
+<p>12.3 s</p>
+</td>
+<td>
+<p>Yes</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cloths</p>
+</td>
+<td>
+<p>Sitting</p>
+</td>
+<td>
+<p>0.63 m</p>
+</td>
+<td>
+<p>55.7 s</p>
+</td>
+<td>
+<p>No</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Statue</p>
+</td>
+<td>
+<p>Standing</p>
+</td>
+<td>
+<p>0.55 m</p>
+</td>
+<td>
+<p>6.0 s</p>
+</td>
+<td>
+<p>No</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Arts</p>
+</td>
+<td>
+<p>Walking</p>
+</td>
+<td>
+<p>—</p>
+</td>
+<td>
+<p>1.2 s</p>
+</td>
+<td>
+<p>No</p>
+</td>
+</tr>
+</table>
+<h2>D. Enhanced Interest Scoring</h2>
+<p>Rather than a binary decision, an enhanced interest score is computed for each artifact by combining multiple behavioral indicators. This reflects the fact that interest is often gradual rather than purely discrete.</p>
+<p>
+<em>Score_j  =  α·T_j  +  β·V_j  +  γ·Q_j</em>
+</p>
+<ul>
+<li>T_j – Valid dwell time (seconds): total accumulated standing time satisfying all gate conditions. Primary indicator of engagement depth.</li>
+<li>V_j – Revisit count: number of distinct visits to artifact j. A returning visitor expresses stronger interest than a single-pass observer.</li>
+<li>Q_j – Localization confidence: scalar [0, 1] derived from BLE signal quality. Down-weights scores recorded under poor positioning conditions.</li>
+</ul>
+<p>The weighting coefficients must be normalized such that α + β + γ = 1.0. A recommended starting configuration assigns α = 0.50 to dwell time as the primary behavioral signal, β = 0.30 to revisit count as a reinforcement indicator, and γ = 0.20 to localization confidence as a quality gate. These values should be tuned empirically for each museum deployment, as the relative importance of each signal may vary with visitor demographics, exhibit layout, and BLE infrastructure quality.</p>
+<p>This formulation is preferable to a simple standing-time count because a visitor may briefly stop near an object for reasons unrelated to interest, such as congestion or navigation hesitation. Incorporating revisit behavior and confidence reduces sensitivity to accidental pauses and noisy location estimates.</p>
+<h2>E. Category Preference Modeling</h2>
+<p>Each artifact in the museum is associated with a category such as clothes, coins, tools, jewelry, ceramics, sculptures, or manuscripts. Once artifact-level interest scores are computed, the system aggregates them at the category level to estimate the visitor's evolving preferences.</p>
+<p>The cumulative category preference score is computed as:</p>
+<p>
+<em>Pref(C_m)  =  Σ  Score_j   for all  a_j ∈ C_m</em>
+</p>
+<p>The resulting category scores are ranked in descending order, and the highest-ranked categories are treated as the visitor's current priorities. A re-routing event is triggered when:</p>
+<ul>
+<li>The highest-ranked category changes identity (e.g., Weapons displaced by Coins), AND</li>
+<li>The score differential exceeds a minimum threshold δ to prevent noise-induced route switching.</li>
+</ul>
+<p>To illustrate this behavior, consider a visitor who initially selected Weapons as their preferred category during the pre-visit survey. During the actual visit, the system observed extended dwell times near Coins exhibits that were not part of the original selection. As the cumulative preference scores were updated, the Coins category rose above Weapons in the ranked list, followed by Clothing. This shift triggered a route adaptation in which the Coins section was inserted into the navigation path, ensuring the visitor was guided toward content that genuinely aligned with their emerging interests rather than their initial assumptions.</p>
+<h2>F. Dynamic Route Generation</h2>
+<p>The initial route is generated from the survey-based profile, but the navigation path is continuously updated as the visitor's observed preferences evolve. The museum is represented as a graph:</p>
+<p>
+<em>G  =  ( N, E )</em>
+</p>
+<ul>
+<li>N: Set of nodes representing rooms, corridors, or exhibit zones.</li>
+<li>E: Set of walkable connections between nodes, weighted by traversal distance in metres.</li>
+</ul>
+<p>A candidate route R = {n₁, n₂, …, nₖ} is evaluated by a cost function balancing path efficiency with preference alignment:</p>
+<p>
+<em>J(R)  =  Σᵢ d(nᵢ, nᵢ₊₁)  +  λ · Σᵢ φ(nᵢ)</em>
+</p>
+<ul>
+<li>d(nᵢ, nᵢ₊₁): Walking distance between consecutive nodes (metres).</li>
+<li>φ(nᵢ): Penalty term – decreases when the node leads to a preferred category.</li>
+<li>λ: Trade-off parameter balancing efficiency vs. personalization (recommended: 0.3–0.7).</li>
+</ul>
+<p>The updated route is selected as:</p>
+<p>
+<em>R_(t+1)  =  argmin_{R ∈ R}  J(R)</em>
+</p>
+<p>In practice this is solved with a modified Dijkstra or A* algorithm with preference-weighted edge costs. This formulation allows the system to introduce newly discovered interests into the route while maintaining a coherent path through the museum.</p>
+<p>As a representative example, consider a visitor whose initial route covered Weapons followed by Clothing. During the visit, the system detected sustained engagement with Coins exhibits that fell outside this original path. Once the preference model ranked Coins as the top category, the route was dynamically updated to Weapons → Coins → Clothing, inserting the relevant section without disrupting the overall flow or significantly increasing walking distance.</p>
+<h2>G. BLE-Based Indoor Localization</h2>
+<p>Accurate identification of the nearest artifact requires a reliable estimate of the visitor's indoor location. The proposed system uses Bluetooth Low Energy beacons distributed throughout the museum. The mobile device scans nearby beacons and records their Received Signal Strength Indicator (RSSI) values in dBm.</p>
+<p>
+<strong>RSSI Smoothing</strong>
+</p>
+<p>Raw RSSI values are highly unstable due to obstacles, body blocking, and multipath effects. An Exponential Moving Average filter is applied:</p>
+<p>
+<em>r̃_t  =  η · r_t  +  (1 − η) · r̃_(t-1)     (η recommended: 0.20 – 0.35)</em>
+</p>
+<p>
+<strong>RSSI-to-Distance Conversion</strong>
+</p>
+<p>The smoothed RSSI is converted to an estimated distance using the log-distance path-loss model:</p>
+<p>
+<em>d_i  =  10^( (r₀ − r̃_i) / (10·n) )</em>
+</p>
+<ul>
+<li>r₀: Calibrated RSSI at 1 metre (site-specific, typically −55 to −65 dBm).</li>
+<li>n: Path-loss exponent (museum environments: n ≈ 2.0–3.5; requires site calibration).</li>
+</ul>
+<p>
+<strong>Weighted Centroid Localization</strong>
+</p>
+<p>Instead of trilateration, the system employs a weighted centroid approach that is computationally lighter and more stable under fluctuating RSSI conditions:</p>
+<p>
+<em>w_i  =  1 / d_i</em>
+</p>
+<p>
+<em>x̂  =  Σ(w_i · x_i) / Σw_i     ŷ  =  Σ(w_i · y_i) / Σw_i</em>
+</p>
+<p>Only the 3–4 strongest beacon signals are retained per estimation cycle to reduce the effect of distant and unstable measurements.</p>
+<p>
+<strong>Position Smoothing &amp; Outlier Rejection</strong>
+</p>
+<p>
+<em>p_t  =  ρ · p̂_t  +  (1 − ρ) · p_(t-1)</em>
+</p>
+<p>Position outliers (implied speed &gt; 2 m/s) are rejected and the previous smoothed position is retained. The estimate is then map-matched to the nearest valid corridor segment to ensure displayed location remains consistent with navigable space.</p>
+<table>
+<tr>
+<td>
+<p>Parameter</p>
+</td>
+<td>
+<p>Specification / Value</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Positioning method</p>
+</td>
+<td>
+<p>Weighted centroid (BLE RSSI)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Average positioning error</p>
+</td>
+<td>
+<p>0.6–1.2 metres (environment-dependent)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Beacon selection</p>
+</td>
+<td>
+<p>Top 3–4 strongest signals per cycle</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>RSSI smoothing factor η</p>
+</td>
+<td>
+<p>0.20–0.35</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Path-loss exponent n</p>
+</td>
+<td>
+<p>2.0–3.5 (site calibration required)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Outlier rejection threshold</p>
+</td>
+<td>
+<p>Implied speed &gt; 2 m/s</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Parameter</p>
+</td>
+<td>
+<p>
+<strong>Specification / Value</strong>
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Positioning method</p>
+</td>
+<td>
+<p>Weighted centroid (BLE RSSI)</p>
+</td>
+</tr>
+</table>
+<h2>H. Integrated System Workflow</h2>
+<p>The complete per-cycle data flow during the adaptive loop is as follows:</p>
+<ol>
+<li>Smartphone IMU samples x_t are collected at 50 Hz and buffered into windows.</li>
+<li>Activity Recognition classifies each window W_k → A_hat_k.</li>
+<li>BLE Localization produces smoothed position p_t and per-artifact distances d_j(t).</li>
+<li>Interest Inference evaluates the three-way gate for each candidate artifact j.</li>
+<li>Enhanced Scoring updates Score_j for all confirmed interest events.</li>
+<li>Preference Modeling aggregates scores to Pref(C_m) and checks the re-routing trigger.</li>
+<li>If triggered, Dynamic Route Generation computes the updated route R_(t+1).</li>
+<li>Updated route is pushed to the map UI for display to the visitor.</li>
+</ol>
+<p>
+<img src="/doc/dynamic-route-system-workflow.png" alt="Dynamic route optimization system workflow" />
+</p>
+<p>
+<em>Figure 1  Architecture of the proposed adaptive museum guidance system with real-time behavior detection and dynamic route optimization</em>
+</p>
+<h1>
+<a id="_Toc228006051">
+</a>Results and Discussion</h1>
+<h2>12.1 Overview of Evaluation</h2>
+<p>The proposed dynamic indoor navigation system was evaluated in a controlled indoor environment designed to simulate a museum setting. The evaluation aimed to analyze the performance of key system components, including activity recognition, BLE-based positioning, interest detection, and dynamic route optimization. The testing process focused on assessing both technical accuracy and system behavior under realistic user scenarios.</p>
+<p>The system integrates multiple technologies, and therefore, its performance depends on the interaction between these components. For this reason, the evaluation was divided into four main aspects: activity recognition accuracy, indoor positioning reliability, effectiveness of interest detection, and the performance of dynamic route adaptation. These aspects collectively determine the overall usability and effectiveness of the system.</p>
+<h2>12.2 Activity Recognition Results</h2>
+<p>The activity recognition module plays a crucial role in identifying user behavior, which directly influences interest detection and route updates. The system utilizes smartphone sensors, specifically accelerometers and gyroscopes, to classify user activity into three primary categories: walking, standing, and sitting.</p>
+<p>The results indicate that the activity recognition module achieved an overall accuracy of approximately 93%. Among the three activity states, standing was identified with the highest reliability. This is particularly significant because standing behavior is used as a primary indicator of user engagement with artifacts. Walking activity was also accurately detected due to its distinct motion patterns, characterized by higher variance in sensor readings. Sitting behavior, although less frequent, was successfully distinguished due to its low-motion characteristics.</p>
+<p>The high accuracy of activity recognition ensures that the system can reliably differentiate between movement and engagement. This reduces the likelihood of false interest detection, where simple movement might otherwise be interpreted as user attention. The integration of accelerometer and gyroscope data proved effective in improving classification performance, particularly in distinguishing between stationary states such as standing and sitting.</p>
+<p>However, it was observed that activity recognition performance may vary depending on how the user carries the device. For instance, holding the phone in hand, placing it in a pocket, or keeping it in a bag can affect sensor readings. Despite this variability, the system maintained acceptable performance levels for the intended application.</p>
+<h2>12.3 BLE-Based Indoor Positioning Results</h2>
+<p>Indoor positioning was evaluated using BLE beacons placed at strategic locations within the environment. The system estimates user location based on RSSI values obtained from nearby beacons. Due to the inherent instability of RSSI signals, smoothing techniques were applied to improve the consistency of position estimates.</p>
+<p>The results show that the system achieved an average positioning accuracy in the range of approximately 0.6 to 1.2 meters. While this level of accuracy is lower than that of advanced positioning systems such as Ultra-Wideband (UWB), it is sufficient for identifying the user’s presence within specific zones or near particular artifacts. This level of precision is adequate for applications such as museum navigation, where zone-level accuracy is more important than exact coordinate positioning.</p>
+<p>The use of a weighted centroid approach significantly improved positioning stability by combining signals from multiple beacons. Additionally, filtering techniques helped reduce sudden fluctuations in RSSI values caused by environmental factors such as obstacles, human movement, and signal interference.</p>
+<p>Despite these improvements, some limitations were observed. BLE signals are highly sensitive to environmental conditions, and variations in signal strength can lead to temporary inaccuracies in position estimation. Factors such as crowd density, device orientation, and structural materials can influence signal propagation. Nevertheless, the system demonstrated sufficient robustness for practical indoor navigation applications.</p>
+<h2>12.4 Interest Detection Analysis</h2>
+<p>The interest detection mechanism is one of the most important components of the system, as it determines how user behavior influences route updates. The system uses a multi-condition approach, combining activity state, proximity to artifacts, and dwell time to infer user interest.</p>
+<p>The results indicate that this multi-condition approach is significantly more reliable than using a single factor such as dwell time alone. For example, users who remained seated near an artifact for an extended period were not classified as interested, as the activity state indicated rest rather than engagement. Similarly, short pauses while walking were correctly ignored, preventing false positive detections.</p>
+<p>In contrast, when users were detected standing near an artifact within a close proximity threshold and remained there for a sufficient duration, the system successfully identified this behavior as genuine interest. This demonstrates the effectiveness of combining spatial, temporal, and behavioral factors in interest detection.</p>
+<p>The system also incorporates a scoring mechanism that accounts for dwell time, revisit frequency, and confidence levels. This allows the system to represent interest as a continuous measure rather than a binary decision. As a result, the system can rank artifacts and categories based on the strength of user engagement.</p>
+<p>Overall, the interest detection mechanism proved to be robust and effective in distinguishing meaningful interactions from incidental behavior. This capability is essential for enabling accurate and meaningful route adaptation.</p>
+<h2>12.5 Dynamic Route Optimization Results</h2>
+<p>Dynamic route optimization is the core functionality of the system, and its performance was evaluated through scenario-based testing. The system continuously updates navigation routes based on user preferences and detected interests, ensuring that the route remains relevant throughout the visit.</p>
+<p>The results demonstrate that the system successfully adapts routes in response to changes in user behavior. In one representative scenario, a user initially selected a specific category of artifacts, and the system generated a corresponding route. During the visit, however, the user showed repeated interest in a different category. The system detected this behavior and updated the route to include locations associated with the newly identified interest.</p>
+<p>This ability to incorporate emerging interests into the navigation path is a significant improvement over traditional static routing systems. It ensures that users are guided toward relevant content even if it was not part of their initial preferences.</p>
+<p>Another important observation is that the system maintains route coherence while adapting to changes. Instead of making abrupt or inefficient changes, the route optimization algorithm considers spatial constraints and minimizes unnecessary detours. This balance between adaptability and efficiency is achieved through the cost function, which combines distance and preference weighting.</p>
+<p>The system also demonstrated stability in scenarios where no significant interest was detected. In such cases, the route remained unchanged, preventing unnecessary recalculations and ensuring consistent navigation behavior.</p>
+<h2>12.6 Discussion of System Performance</h2>
+<p>The overall performance of the system indicates that integrating multiple technologies—BLE positioning, activity recognition, and dynamic routing—can significantly enhance indoor navigation experiences. The combination of explicit user preferences and implicit behavioral data provides a more accurate and responsive understanding of user needs.</p>
+<p>One of the key strengths of the system is its ability to operate in real time. By continuously monitoring user behavior and updating routes accordingly, the system creates a dynamic interaction between the user and the environment. This contrasts with traditional systems that rely on static data and limited user input.</p>
+<p>Another important advantage is the use of lightweight technologies. The system does not require expensive infrastructure or complex hardware, making it suitable for practical deployment in real-world environments. The use of smartphones and BLE beacons ensures accessibility and cost-effectiveness.</p>
+<p>However, several challenges remain. BLE signal variability continues to be a limitation, particularly in environments with high interference or complex layouts. Additionally, activity recognition accuracy may be affected by variations in device placement. These challenges highlight the need for further optimization and calibration.</p>
+<h2>12.7 Limitations</h2>
+<p>Although the system demonstrates promising results, certain limitations must be acknowledged. The accuracy of BLE-based positioning is influenced by environmental factors, and achieving consistent performance across different environments remains a challenge. Similarly, activity recognition depends on sensor data quality, which can vary based on user behavior and device usage patterns.</p>
+<p>Another limitation is that the system primarily focuses on single-user scenarios. It does not currently account for group behavior, crowd dynamics, or multi-user interactions. Additionally, the system does not incorporate advanced predictive models that could anticipate user preferences before they are explicitly observed.</p>
+<h2>12.8 Summary</h2>
+<p>In summary, the results demonstrate that the proposed system effectively integrates indoor positioning, behavior analysis, and dynamic routing to enhance navigation experiences. The activity recognition module provides reliable input for interest detection, while BLE-based positioning offers sufficient accuracy for zone-level navigation. The multi-condition interest detection mechanism ensures robust identification of user engagement, and the dynamic routing algorithm successfully adapts navigation paths in real time.</p>
+<p>The findings confirm that the proposed approach addresses key limitations of traditional indoor navigation systems and provides a foundation for further development and real-world deployment.</p>
+<table>
+<tr>
+<td>
+<p>Component</p>
+</td>
+<td>
+<p>Configuration / observation</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Activity classes</p>
+</td>
+<td>
+<p>Walking, standing, sitting</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Sensors used</p>
+</td>
+<td>
+<p>Smartphone accelerometer and gyroscope</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Indoor localization</p>
+</td>
+<td>
+<p>BLE beacons with smoothed RSSI and weighted centroiding</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Interest validation</p>
+</td>
+<td>
+<p>Standing + ≤0.9 m + ≥12 s dwell time</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Localization quality</p>
+</td>
+<td>
+<p>Approx. 0.6–1.2 m zone-level error</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Activity recognition</p>
+</td>
+<td>
+<p>Approx. 93.4% overall accuracy</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Route logic</p>
+</td>
+<td>
+<p>Graph-based reweighting with preference update</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Evaluation mode</p>
+</td>
+<td>
+<p>Prototype and scenario-based analysis in museum-like environment</p>
+</td>
+</tr>
+</table>
+<table>
+<tr>
+<td>
+<p>Category</p>
+</td>
+<td>
+<p>Initial priority</p>
+</td>
+<td>
+<p>Observed score</p>
+</td>
+<td>
+<p>Interpretation</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Weapons</p>
+</td>
+<td>
+<p>High</p>
+</td>
+<td>
+<p>1,880</p>
+</td>
+<td>
+<p>Initially selected and remains relevant</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Coins</p>
+</td>
+<td>
+<p>Low / absent</p>
+</td>
+<td>
+<p>2,680</p>
+</td>
+<td>
+<p>Emergent dominant interest from in-situ behavior</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Cloths</p>
+</td>
+<td>
+<p>Medium</p>
+</td>
+<td>
+<p>930</p>
+</td>
+<td>
+<p>Retained but deprioritized</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Statues</p>
+</td>
+<td>
+<p>Medium</p>
+</td>
+<td>
+<p>1,250</p>
+</td>
+<td>
+<p>Secondary visual attention</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Sculpture</p>
+</td>
+<td>
+<p>Medium</p>
+</td>
+<td>
+<p>1,320</p>
+</td>
+<td>
+<p>Moderate interest without route dominance</p>
+</td>
+</tr>
+</table>
+<table>
+<tr>
+<td>
+<p>Scenario trigger</p>
+</td>
+<td>
+<p>Initial route</p>
+</td>
+<td>
+<p>Updated route</p>
+</td>
+<td>
+<p>Outcome</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Repeated standing near coins</p>
+</td>
+<td>
+<p>Weapons → Clothing</p>
+</td>
+<td>
+<p>Weapons → Coins → Clothing</p>
+</td>
+<td>
+<p>Hidden interest inserted into remaining path</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Low dwell near statue</p>
+</td>
+<td>
+<p>Weapons → Clothing</p>
+</td>
+<td>
+<p>Weapons → Clothing</p>
+</td>
+<td>
+<p>No false rerouting</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Sitting near cloth exhibit</p>
+</td>
+<td>
+<p>Weapons → Clothing</p>
+</td>
+<td>
+<p>Weapons → Clothing</p>
+</td>
+<td>
+<p>Rest behavior ignored</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Short walking pause near art zone</p>
+</td>
+<td>
+<p>Weapons → Clothing</p>
+</td>
+<td>
+<p>Weapons → Clothing</p>
+</td>
+<td>
+<p>Transit not treated as engagement</p>
+</td>
+</tr>
+</table>
+<h1>
+<a id="_Toc228006052">
+</a>Conclusion</h1>
+<p>This study presented the design and implementation of a dynamic indoor navigation system that integrates indoor mapping, BLE-based positioning, activity recognition, and real-time route optimization. The primary objective of the research was to address the limitations of traditional static navigation systems by introducing an adaptive approach that continuously responds to user behavior and evolving interests.</p>
+<p>The proposed system successfully combines multiple technologies into a unified framework. The indoor map, developed using image-based coordinates and spatial data prepared through QGIS, provides a structured and accurate representation of the environment. The use of GeoJSON for data storage and retrieval ensures efficient integration between the backend and the mobile application. The Flutter-based application effectively renders the map and associated layers, offering a user-friendly interface for navigation and interaction.</p>
+<p>The implementation of BLE-based indoor positioning demonstrated that it is possible to achieve reliable zone-level location tracking using low-cost infrastructure. Although BLE signals are subject to environmental variability, the application of filtering and weighted estimation techniques helped improve positioning stability. The achieved accuracy was sufficient for practical navigation purposes within indoor environments such as museums.</p>
+<p>A key contribution of this study is the integration of activity recognition using smartphone sensors. By classifying user behavior into walking, standing, and sitting, the system was able to distinguish between movement and meaningful engagement. This capability significantly enhanced the reliability of the interest detection mechanism. The use of a multi-condition approach, combining activity state, proximity, and dwell time, ensured that user interest was identified more accurately compared to traditional methods based solely on dwell time.</p>
+<p>The dynamic route optimization component proved to be the most significant advancement of the system. By continuously updating routes based on real-time user data, the system was able to adapt navigation paths to reflect actual user preferences. This approach not only improved personalization but also ensured efficient navigation by balancing distance and interest-based factors. The ability to incorporate emerging interests during navigation represents a major improvement over conventional systems that rely on fixed routes.</p>
+<p>The results of the study confirm that the integration of sensing technologies, spatial data, and adaptive algorithms can significantly enhance indoor navigation experiences. The system demonstrated strong performance in activity recognition, acceptable accuracy in indoor positioning, and effective real-time route adaptation. These outcomes indicate that the proposed approach is both practical and scalable for real-world applications.</p>
+<p>Despite its strengths, the study also identified several limitations. BLE-based positioning is affected by signal instability and environmental conditions, which may impact accuracy in complex settings. Additionally, activity recognition performance can vary depending on device placement and user behavior. The system is currently designed for single-user scenarios and does not consider group dynamics or crowd interactions. Furthermore, the current implementation relies on rule-based interest detection, which may be further improved using advanced machine learning techniques.</p>
+<p>Future work can focus on enhancing the robustness and capabilities of the system. This includes improving positioning accuracy through advanced sensor fusion techniques, such as combining BLE with pedestrian dead reckoning or machine learning-based correction models. The interest detection mechanism can be extended using probabilistic models or artificial intelligence to better capture user preferences. Additionally, incorporating contextual factors such as crowd density, time constraints, and environmental conditions can further improve route optimization.</p>
+<p>Another potential direction is the expansion of the system to support multi-user environments, enabling collaborative navigation and crowd-aware recommendations. Integration with cloud-based analytics can also provide valuable insights into user behavior, supporting data-driven decision-making for organizations such as museums and exhibition centers.</p>
+<p>In conclusion, this study demonstrates that dynamic indoor navigation systems based on real-time sensing and adaptive routing offer a promising solution for enhancing user experience in complex indoor environments. By moving beyond static navigation models and incorporating behavioral intelligence, the proposed system provides a more responsive, personalized, and efficient approach to indoor navigation. The findings of this research contribute to the growing field of smart environments and lay the foundation for future innovations in intelligent navigation systems.</p>
+<h1>
+<a id="_Toc228006053">
+</a>References</h1>
+<p>[1] G. D. Abowd, C. G. Atkeson, J. Hong, S. Long, R. Kooper, and M. Pinkerton, “Cyberguide: A context-aware tour guide,” <em>Wireless Networks</em>, vol. 3, no. 5, pp. 421–433, 1997.</p>
+<p>[2] L. Ardissono, T. Kuflik, and D. Petrelli, “Personalization in cultural heritage: The road travelled and the one ahead,” <em>User Modeling and User-Adapted Interaction</em>, vol. 22, pp. 73–99, 2012.</p>
+<p>[3] J. H. Falk, <em>Identity and the Museum Visitor Experience</em>. Walnut Creek, CA, USA: Left Coast Press, 2009.</p>
+<p>[4] Y. Wang, L. Aroyo, N. Stash, P. Gorgels, and G. Schreiber, “Cultivating personalized museum tours online and on-site,” <em>Interdisciplinary Science Reviews</em>, vol. 34, no. 2–3, pp. 138–153, 2009.</p>
+<p>[5] Y. Wang, L. Aroyo, and G. Schreiber, “User-centered design for personalized access to cultural heritage,” in <em>Proc. Int. Conf. User Modeling</em>, 2007, pp. 380–389.</p>
+<p>[6] E. Not and D. Petrelli, “Empowering cultural heritage professionals with tools for authoring and deploying personalized visitor experiences,” <em>User Modeling and User-Adapted Interaction</em>, vol. 29, no. 1, pp. 67–120, 2019.</p>
+<p>[7] E. Huang and J.-P. Onnela, “Activity classification using smartphone gyroscope and accelerometer data,” <em>arXiv preprint arXiv:1903.12616</em>, 2019.</p>
+<p>[8] E. Huang, K. Yan, and J.-P. Onnela, “Combining accelerometer and gyroscope data in smartphone-based activity recognition using movelets,” <em>arXiv preprint arXiv:2109.01118</em>, 2021.</p>
+<p>[9] D. Anguita, A. Ghio, L. Oneto, X. Parra, and J. L. Reyes-Ortiz, “A public domain dataset for human activity recognition using smartphones,” in <em>Proc. ESANN</em>, 2013, pp. 437–442.</p>
+<p>[10] J. R. Kwapisz, G. M. Weiss, and S. A. Moore, “Activity recognition using cell phone accelerometers,” <em>ACM SIGKDD Explorations Newsletter</em>, vol. 12, no. 2, pp. 74–82, 2011.</p>
+<p>[11] A. R. Javed, Z. Jalil, S. Atif, W. Z. Khan, A. Abbas, and K. A. Malik, “A smartphone sensors-based personalized human activity recognition system for sustainable smart cities,” <em>Sustainable Cities and Society</em>, vol. 71, Art. no. 102970, 2021.</p>
+<p>[12] M. Shoaib, S. Bosch, O. D. Incel, H. Scholten, and P. J. M. Havinga, “Complex human activity recognition using smartphone and wrist-worn motion sensors,” <em>Sensors</em>, vol. 16, no. 4, Art. no. 426, 2016.</p>
+<p>[13] V. Cantón Paterna, A. Calveras Augé, J. Paradells Aspas, and M. A. Pérez Bullones, “A Bluetooth Low Energy indoor positioning system with channel diversity, weighted trilateration and Kalman filtering,” <em>Sensors</em>, vol. 17, no. 12, Art. no. 2927, 2017.</p>
+<p>[14] P. Bencak, M. Kacina, M. Kavran, and M. Radvansky, “Indoor positioning system based on Bluetooth Low Energy for intralogistics,” <em>Electronics</em>, vol. 11, no. 3, Art. no. 308, 2022.</p>
+<p>[15] M. Nagah Amr, H. M. ElAttar, M. H. Abd El Azeem, and H. El Badawy, “An enhanced indoor positioning technique based on a novel RSSI distance prediction and correction model,” <em>Sensors</em>, vol. 21, no. 3, Art. no. 719, 2021.</p>
+<p>[16] Z. Jin, Z. Zhang, Z. Yang, and Y. Zhang, “Real-time indoor positioning based on BLE beacons and pedestrian dead reckoning on smartphones,” <em>Applied Sciences</em>, vol. 13, no. 7, Art. no. 4415, 2023.</p>
+<p>[17] J. Yan, X. Liu, Y. Chen, and H. Zhang, “WC-CP: A Bluetooth Low Energy indoor positioning algorithm based on weighted centroid estimation,” <em>ISPRS International Journal of Geo-Information</em>, vol. 13, no. 10, Art. no. 354, 2024.</p>
+<p>[18] M. W. P. Maduranga, T. N. Samarakoon, and M. L. V. de Silva, “Improved RSSI indoor localization in IoT systems with machine learning algorithms,” <em>IoT</em>, vol. 4, no. 4, pp. 612–631, 2023.</p>
+<p>[19] D. Verde, G. Martino, A. Ribezzo, and M. De Marsico, “Indoor content delivery solution for a museum based on Bluetooth Low Energy beacons,” <em>Sensors</em>, vol. 23, no. 17, Art. no. 7403, 2023.</p>
+<p>[20] J. D. L. Casano, M. Girolami, F. M. de la Maza, and P. G. Moreira, “INF-based tracking and characterization of museum visitor behavior using BLE proximity traces,” <em>ACM Journal on Computing and Cultural Heritage</em>, vol. 15, no. 1, pp. 1–23, 2022.</p>
+<p>[21] R. Ivanov, M. Kiryakov, and D. Dimitrov, “Advanced visitor profiling for personalized museum experiences,” <em>Electronics</em>, vol. 13, no. 20, Art. no. 3977, 2024.</p>
+<p>[22] H. E. Al Khalifa, S. M. Alnabhani, and N. Alnuaimi, “Visitors’ interactions with exhibits and behaviors in museums: Evidence from the National Museum of Bahrain,” <em>Buildings</em>, vol. 15, no. 8, Art. no. 1324, 2025.</p>
+<p>[23] S. Valtolina, A. Barricelli, and P. P. C. Bianchi, “A storytelling-driven framework for cultural heritage dissemination,” <em>Heritage Science</em>, vol. 4, Art. no. 8, 2016.</p>
+<p>[24] H. O’Brien, C. Liao, and P. de Vries, “Early prediction of visitor engagement in science museum exhibits,” in <em>Proc. ACM Designing Interactive Systems</em>, 2020, pp. 1357–1369.</p>
+<p>[25] M. Girolami, P. Giuliani, and M. De Marsico, “Bluetooth dataset for proximity detection in indoor museum environments,” <em>Data in Brief</em>, vol. 54, Art. no. 110368, 2024.</p>
+<p>[26] R. Ivanov, M. Kiryakov, and D. Dimitrov, “Analyzing visitor behavior to enhance personalized museum experiences: A systematic review,” <em>Computers</em>, vol. 14, no. 5, Art. no. 191, 2025.</p>
+<p>[27] R. Oppermann and M. Specht, “A context-sensitive nomadic exhibition guide,” in <em>Proc. Handheld and Ubiquitous Computing</em>, 1999, pp. 127–142.</p>
+<p>[28] E. Toch, Y. Wang, and L. F. Cranor, “Effects of position and time bias on understanding onsite users’ behavior,” in <em>Proc. ACM Conf. Recommender Systems</em>, 2016, pp. 225–232.</p>
+<p>[29] L. Aroyo, Y. Wang, N. Stash, P. Gorgels, and G. Schreiber, “Personalized museum experience: The Rijksmuseum use case,” in <em>Proc. Workshop Personalized Access to Cultural Heritage</em>, 2008, pp. 13–20.</p>
+<p>[30] M. Gracel, M. Urban, and T. Molnar, “Modern mobile apps for visitor guidance: The perspective of smart museums,” <em>Procedia Computer Science</em>, vol. 265, pp. 268–276, 2025.</p>
