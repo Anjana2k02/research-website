@@ -1,0 +1,17 @@
+{
+	"intro": "The following areas represent key research gaps identified in recent studies.",
+	"gaps": [
+		{
+			"title": "Identification and classification",
+			"description": "There are no records of a smart solution for coconut pest and disease identification and classification in Sri Lanka. Symptoms of coconut disorders often show similar visual characteristics, making accurate differentiation difficult."
+		},
+		{
+			"title": "Severity assessment",
+			"description": "Smart solutions for identifying some coconut pests and diseases have been reported in India, but assessment of disease severity and pest progression level is still limited."
+		},
+		{
+			"title": "Information sharing",
+			"description": "A real-time communication system to speed up information exchange between coconut growers, extension personnel, and researchers has been identified as a priority need for effective pest and disease control."
+		}
+	]
+}

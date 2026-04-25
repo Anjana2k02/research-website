@@ -1,0 +1,20 @@
+{
+	"paragraphs": [
+		"Agriculture and related industries employed more than a quarter of the Sri Lankan workforce by the year 2019 [1]. However, due to frequent changes in climatic conditions, disease spread has increased resulting in severe crop losses in Sri Lankan cultivation [1]. Disease and pest identification and assessment techniques based on learning features automatically to collect valuable information will be sustainable in the future [2]. According to Sladojevic et al. neural networks can extract patterns and identify trends that are too complex for humans or computer systems to notice [3]. This has been proved by a study that proposed a Convolutional Neural Network (CNN) based model responsible for detecting leaves and distinguishing between healthy and diseased leaves of 13 diseases with an overall accuracy of 96.3% [3].",
+		"The author, Chandy [2] proposed a system for identifying coconut disease and pest infestations using deep learning techniques, in which symptoms are identified by using a drone that will fly through the coconut lands to capture images. It will identify the pest infestation by processing the images using deep learning and image processing. Finally, the result is sent to the user's mobile phone using WIFI [2]."
+	],
+	"references": [
+		{
+			"id": 1,
+			"citation": "R. Miriyagalla, Y. Samarawickrama, D. Rathnaweera, L. Liyanage, D. Kasthurirathna, D. Nawinna, and J. L. Wijekoon, \"On the effectiveness of using machine learning and Gaussian plume model for plant disease dispersion prediction and simulation,\" in 2019 International Conference on Advancements in Computing (ICAC), 2019."
+		},
+		{
+			"id": 2,
+			"citation": "A. Chandy, \"Pest infestation identification in coconut trees using deep learning,\" Journal of Artificial Intelligence and Capsule Networks, vol. 1, no. 1, pp. 10-18, 2019."
+		},
+		{
+			"id": 3,
+			"citation": "S. Sladojevic, M. Arsenovic, A. Anderla, D. Culibrk, and D. Stefanovic, \"Deep neural networks based recognition of plant diseases by leaf image classification,\" Computational Intelligence and Neuroscience, vol. 2016, pp. 1-11, 2016."
+		}
+	]
+}

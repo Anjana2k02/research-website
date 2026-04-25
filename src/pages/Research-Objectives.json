@@ -1,0 +1,21 @@
+{
+	"objectives": [
+		{
+			"title": "Classification of Weligama Coconut Leaf Wilt Disease",
+			"description": "Classify Weligama Coconut Leaf Wilt Disease (WCLWD) and distinguish its uneven yellowing symptoms from similar disorders. Determine symptom severity using a Convolutional Neural Network (CNN) to support timely preventive actions by the Coconut Research Institute of Sri Lanka (CRISL)."
+		},
+		{
+			"title": "Classification of Coconut Caterpillar Infestation",
+			"description": "Develop a solution to identify Coconut Caterpillar Infestation (CCI) while differentiating its symptoms from other conditions. Estimate infestation severity and notify relevant authorities to accelerate control measures and prevent potential outbreaks."
+		},
+		{
+			"title": "Differentiating Magnesium Deficiency, Coconut Leaf Scorching, and Water Resources",
+			"description": "Identify yellowing patterns associated with magnesium deficiency, detect leaf scorch decline (LSD), and determine whether water resources are available within a 100 m radius to support continuous monitoring and prevention workflows."
+		},
+		{
+			"title": "Crowdsourcing for Information Sharing",
+			"description": "Provide a convenient platform for farmers and industry professionals to visualize disease dispersion and receive severity-based notifications, improving collaborative decision-making and response speed."
+		}
+	]
+}
+
