@@ -1,21 +1,40 @@
 {
-	"objectives": [
-		{
-			"title": "Classification of Weligama Coconut Leaf Wilt Disease",
-			"description": "Classify Weligama Coconut Leaf Wilt Disease (WCLWD) and distinguish its uneven yellowing symptoms from similar disorders. Determine symptom severity using a Convolutional Neural Network (CNN) to support timely preventive actions by the Coconut Research Institute of Sri Lanka (CRISL)."
-		},
-		{
-			"title": "Classification of Coconut Caterpillar Infestation",
-			"description": "Develop a solution to identify Coconut Caterpillar Infestation (CCI) while differentiating its symptoms from other conditions. Estimate infestation severity and notify relevant authorities to accelerate control measures and prevent potential outbreaks."
-		},
-		{
-			"title": "Differentiating Magnesium Deficiency, Coconut Leaf Scorching, and Water Resources",
-			"description": "Identify yellowing patterns associated with magnesium deficiency, detect leaf scorch decline (LSD), and determine whether water resources are available within a 100 m radius to support continuous monitoring and prevention workflows."
-		},
-		{
-			"title": "Crowdsourcing for Information Sharing",
-			"description": "Provide a convenient platform for farmers and industry professionals to visualize disease dispersion and receive severity-based notifications, improving collaborative decision-making and response speed."
-		}
-	]
+  "objectives": [
+    {
+      "title": "Main Objective",
+      "description": "To design and develop an integrated AI-driven Smart Museum Guide system that enhances visitor engagement, accessibility, and personalization through QR-based artifact access, intelligent recommendations, interactive visualization, adaptive indoor navigation, and emotion-aware feedback mechanisms for the Colombo National Museum."
+    },
+    {
+      "title": "QR-Based Artifact Access System",
+      "description": "To develop a QR-based artifact access system that enables visitors to retrieve digital information of museum artifacts through unique QR codes linked to a centralized backend system."
+    },
+    {
+      "title": "Role-Based Personalized Content Delivery",
+      "description": "To design a role-based personalized content delivery mechanism that adapts artifact descriptions according to visitor categories such as tourist, student, teacher, professor, and citizen."
+    },
+    {
+      "title": "Multilingual Translation Module",
+      "description": "To implement a multilingual translation module using NLP-based APIs to provide real-time translation of artifact descriptions into multiple languages, improving accessibility for diverse users."
+    },
+    {
+      "title": "AI-Driven Artifact Classification and Recommendation",
+      "description": "To develop an AI-driven artifact classification and recommendation system using a MobileNetV2-based model to classify artifacts and suggest related exhibits and hidden gems based on user interaction and metadata."
+    },
+    {
+      "title": "Interactive 2D and 3D Artifact Visualization",
+      "description": "To design and integrate an interactive 2D and 3D artifact visualization system using deep learning-based reconstruction and generative models to enhance artifact accessibility without physical interaction."
+    },
+    {
+      "title": "Adaptive Indoor Navigation System",
+      "description": "To develop an adaptive indoor navigation system using BLE beacon positioning, sensor data, and GIS-based mapping to provide dynamic and context-aware route optimization inside the museum."
+    },
+    {
+      "title": "Emotion-Based Feedback and Chatbot System",
+      "description": "To implement an emotion-based feedback and chatbot system that captures facial and vocal expressions to analyze visitor emotions and provide multilingual conversational support using AI-based models."
+    },
+    {
+      "title": "Unified Mobile Application and Backend Architecture",
+      "description": "To integrate all components into a unified mobile application and backend architecture to ensure seamless interaction, scalability, and real-time data processing for smart museum operations."
+    }
+  ]
 }
-

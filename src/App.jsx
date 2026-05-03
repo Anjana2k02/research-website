@@ -70,15 +70,15 @@ const downloadsData = {
       status: 'Submitted on 2021/10/13', 
       multiple: [
         { type: 'Group', link: '#' },
-        { type: 'Individual', link: '#' }
+        { type: 'Individual', link: 'https://drive.google.com/drive/folders/1ATg2vPKmKSJIi_s_9N8BrZeawlIBEp2q?usp=sharing' }
       ]
     },
     { title: 'Poster', status: 'Submitted on 2021/10/13', type: 'Group', link: '#' },
   ],
   presentations: [
-    { title: 'Project Proposal', status: 'Submitted on 2021/03/14', type: 'Group', link: '#' },
-    { title: 'Progress Presentation I', status: 'Submitted on 2021/07/08', type: 'Group', link: '#' },
-    { title: 'Progress Presentation II', status: 'Submitted on 2021/10/18', type: 'Group', link: '#' },
+    { title: 'Project Proposal', status: 'Submitted on 2021/03/14', type: 'Group', link: 'https://drive.google.com/drive/folders/1SHC3ruFQYBOz7DxDclnVE4kt4hWCAJ8R?usp=sharing' },
+    { title: 'Progress Presentation I', status: 'Submitted on 2021/07/08', type: 'Group', link: 'https://drive.google.com/drive/folders/1SHC3ruFQYBOz7DxDclnVE4kt4hWCAJ8R?usp=sharing' },
+    { title: 'Progress Presentation II', status: 'Submitted on 2021/10/18', type: 'Group', link: 'https://drive.google.com/drive/folders/1SHC3ruFQYBOz7DxDclnVE4kt4hWCAJ8R?usp=sharing' },
     { title: 'Final Presentation', status: 'Yet to be submitted, link will be updated soon.', type: 'Group', link: null },
   ]
 };
@@ -256,8 +256,8 @@ export default function App() {
   ];
 
   const projectScopeItems = [
-    { id: 'literature-survey', label: 'Literature Survey' },
-    { id: 'research-gap', label: 'Research Gap' },
+    { id: 'literature-survey', label: 'Introduction' },
+    { id: 'research-gap', label: 'Problem Statement' },
     { id: 'research-problem-solution', label: 'Research Problem & Solution' },
     { id: 'research-objectives', label: 'Research Objectives' },
     { id: 'methodology', label: 'Methodology' },
@@ -666,7 +666,8 @@ export default function App() {
                     name: "Indunil W W A D A",
                     idNumber: "IT22002624",
                     image: "/students/anju.jpeg",
-                    email: "mailto:it22002624@my.sliit.lk"
+                    email: "mailto:it22002624@my.sliit.lk",
+                    linkedin: "https://www.linkedin.com/in/anjana2k02/"
                   },
                   {
                     name: "G G S I Ranasinghe",
@@ -689,7 +690,7 @@ export default function App() {
                     role="Group Member"
                     department="Information Technology"
                     links={[
-                      { label: 'LinkedIn', url: '#', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> },
+                      { label: 'LinkedIn', url: student.linkedin || '#', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> },
                       { label: 'E-Mail', url: student.email, icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> }
                     ]}
                   />

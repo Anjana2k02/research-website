@@ -1,19 +1,18 @@
 {
-	"problem": {
-		"title": "Proposed Problem",
-		"paragraphs": [
-			"How can coconut pests and diseases be classified while providing real-time surveillance to stakeholders?",
-			"Weligama Coconut Leaf Wilt Disease (WCLWD) and Coconut Caterpillar Infestation (CCI) are two of the most threatening conditions for coconut cultivation in Sri Lanka. Due to WCLWD, about 300,000 palms were removed and an estimated 60,000 palms required identification for removal. Significant yield loss can occur when CCI causes more than 30% defoliation. Efficient management therefore requires early detection and fast communication between growers and professionals."
-		]
-	},
-	"solution": {
-		"title": "Proposed Solution",
-		"paragraphs": [
-			"Coco Remedy uses mobile and web-based software to manage WCLWD and CCI, both of which heavily affect coconut cultivation.",
-			"For WCLWD, yellowing patterns can overlap with magnesium deficiency. For CCI, dried leaf appearance can be confused with leaf scorching. Deep learning techniques, including Convolutional Neural Networks (CNN), are used for accurate feature extraction and disease identification.",
-			"Coconut growers, estate managers, CRISL researchers, CDOs of CCB, and the general public can identify diseased palms by capturing leaf images. Geo-tagged locations can support anonymous data collection and future prediction workflows.",
-			"WCLWD severity is estimated from multiple symptoms. For CCI, caterpillar counts are extracted using OpenCV and YOLO-based object detection, while infected regions are estimated through Mask R-CNN. Progression level is then determined from these parameters.",
-			"When infected trees are identified, the system sends real-time notifications. Infection records, locations, and severity levels support timely remedial actions, and danger zones can be visualized through mapping technologies so nearby users can take precautions."
-		]
-	}
+  "problem": {
+    "title": "Research Problem",
+    "paragraphs": [
+      "The core problem lies in the absence of a unified, intelligent, and adaptive smart museum system that can simultaneously address personalization, accessibility, navigation, and feedback. Existing solutions tend to focus on individual components rather than delivering a comprehensive platform that integrates these functionalities.",
+      "A large public museum environment where local and international visitors explore artifacts through traditional static displays and limited digital interaction. Primary users include museum visitors, students and educational groups, while secondary users encompass museum staff, tour guides, and cultural heritage researchers.",
+      "Therefore, this research aims to address the problem of designing and implementing an AI-driven, integrated smart museum guide system that combines QR-based artifact access, role-based personalized content, multilingual support, intelligent recommendations, interactive 2D/3D visualization, adaptive indoor navigation, and emotion-aware feedback to enhance visitor experience and support data-driven museum management."
+    ]
+  },
+  "solution": {
+    "title": "Proposed Solution",
+    "paragraphs": [
+      "This research proposes an AI-driven Smart Museum Guide system for the Colombo National Museum that unifies multiple technologies into a single, cohesive platform designed to transform the visitor experience.",
+      "The system integrates QR-based artifact access with role-based personalization, AI-powered 2D reconstruction and 3D visualization, adaptive indoor navigation using BLE beacon positioning, and an emotion-based feedback system supported by a multilingual conversational chatbot.",
+      "By combining all components into a unified mobile application and backend architecture, the system ensures seamless interaction, scalability, and real-time data processing — enabling smart museum operations and data-driven management decisions."
+    ]
+  }
 }
