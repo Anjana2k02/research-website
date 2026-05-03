@@ -1,23 +1,15 @@
 {
-	"overview": [
-		"The proposed pest and disease surveillance system consists of multiple components to support early identification, severity estimation, and field-level response management.",
-		"Figure 4 illustrates the overall system diagram of the proposed solution, intended to provide a smart approach for stakeholders, researchers, and Coconut Development Officers (CDOs) to detect coconut diseases and pest infestations that may affect the coconut industry.",
-		"Registered users can capture or upload suspicious images. The images are sent to the Amazon Web Services (AWS) backend where the Flask server processes them using deep learning models for disease and pest detection.",
-		"When infected leaves are identified, responses are captured through the crowdsourcing platform. Google Maps is updated with real-time locations (latitude and longitude), and risk notifications are sent to nearby farmers and stakeholders."
-	],
-	"components": [
-		"WCLWD and symptom severity identification",
-		"CCI identification and progression level determination",
-		"Deficiency identification (Mg deficiency and leaf scorch decline)",
-		"Water resource identification",
-		"Crowdsourcing for information sharing"
-	],
-	"technologies": [
-		"Amazon Web Services (AWS)",
-		"Flask",
-		"Convolutional Neural Networks (CNN)",
-		"Mask R-CNN",
-		"YOLOv5",
-		"Google Maps"
-	]
+  "overview": [
+    "This research adopts a design science and machine learning–driven development methodology to build an intelligent Smart Museum Guide system. The system integrates multiple AI components including recommendation systems, multilingual translation, indoor navigation, and emotion-aware feedback analysis.",
+    "The methodology follows an iterative lifecycle consisting of requirement analysis, data collection, system design, model development, implementation, testing, and evaluation."
+  ],
+  "components": [
+    "Requirement Analysis",
+    "Data Collection",
+    "System Design",
+    "Model Development",
+    "Implementation",
+    "Testing",
+    "Evaluation"
+  ]
 }

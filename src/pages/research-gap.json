@@ -1,17 +1,25 @@
 {
-	"intro": "The following areas represent key research gaps identified in recent studies.",
-	"gaps": [
-		{
-			"title": "Identification and classification",
-			"description": "There are no records of a smart solution for coconut pest and disease identification and classification in Sri Lanka. Symptoms of coconut disorders often show similar visual characteristics, making accurate differentiation difficult."
-		},
-		{
-			"title": "Severity assessment",
-			"description": "Smart solutions for identifying some coconut pests and diseases have been reported in India, but assessment of disease severity and pest progression level is still limited."
-		},
-		{
-			"title": "Information sharing",
-			"description": "A real-time communication system to speed up information exchange between coconut growers, extension personnel, and researchers has been identified as a priority need for effective pest and disease control."
-		}
-	]
+  "intro": "The core problem lies in the absence of a unified, intelligent, and adaptive smart museum system that can simultaneously address personalization, accessibility, navigation, and feedback. Existing solutions tend to focus on individual components rather than delivering a comprehensive platform that integrates these functionalities.",
+  "gaps": [
+    {
+      "title": "Lack of Unified Personalization",
+      "description": "Existing museum systems lack role-based content personalization that adapts artifact descriptions for different visitor categories such as tourists, students, teachers, professors, and citizens."
+    },
+    {
+      "title": "Limited Accessibility and Multilingual Support",
+      "description": "Current solutions provide insufficient multilingual support and do not leverage NLP-based APIs for real-time translation of artifact descriptions to accommodate diverse international visitors."
+    },
+    {
+      "title": "Absent Adaptive Indoor Navigation",
+      "description": "Traditional museums lack intelligent indoor navigation systems using BLE beacon positioning, sensor data, and GIS-based mapping for dynamic and context-aware route optimization inside the museum."
+    },
+    {
+      "title": "No Emotion-Aware Feedback Mechanism",
+      "description": "Existing platforms do not capture facial and vocal expressions to analyze visitor emotions or provide AI-driven multilingual conversational support through chatbot systems."
+    },
+    {
+      "title": "Fragmented Visualization Solutions",
+      "description": "There is no integrated interactive 2D and 3D artifact visualization system using deep learning-based reconstruction and generative models, leaving visitors without immersive artifact exploration experiences."
+    }
+  ]
 }
