@@ -408,7 +408,7 @@ export default function App() {
             />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/60 to-transparent px-5 pb-6 pt-20 sm:px-8 sm:pb-8">
               <h1 className="max-w-4xl text-lg font-semibold leading-snug text-white sm:text-2xl lg:text-3xl">
-                Dynamic Route Optimization using Sensor-Based User Interest Detection with Indoor Mapping
+                Smart Artifact Guide: Multilingual, Navigational, and AI-Enhanced Application for Colombo National Museum
               </h1>
             </div>
           </article>
@@ -660,7 +660,7 @@ export default function App() {
                     name: "Millaniya L. A",
                     idNumber: "IT22897312",
                     image: "/students/lashan.jpeg",
-                    email: "mailto:#"
+                    email: "mailto:it22897312@my.sliit.lk"
                   },
                   {
                     name: "Indunil W W A D A",
@@ -673,13 +673,13 @@ export default function App() {
                     name: "G G S I Ranasinghe",
                     idNumber: "IT22918260",
                     image: "/students/senumi.jpeg",
-                    email: "mailto:#"
+                    email: "mailto:it22918260@my.sliit.lk#"
                   },
                   {
                     name: "Jayathilake G W S M",
                     idNumber: "IT22330314",
                     image: "/students/jaye.jpeg",
-                    email: "mailto:#"
+                    email: "it22330314@my.sliit.lk"
                   }
                 ].map((student, idx) => (
                   <TeamCard 
