@@ -669,6 +669,7 @@ export default function App() {
                     email: "mailto:it22002624@my.sliit.lk",
                     linkedin: "https://www.linkedin.com/in/anjana2k02/"
                   },
+                  
                   {
                     name: "G G S I Ranasinghe",
                     idNumber: "IT22918260",
